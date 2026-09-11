@@ -1,2 +1,2 @@
 # ictteacher1
-adse
+index.html
