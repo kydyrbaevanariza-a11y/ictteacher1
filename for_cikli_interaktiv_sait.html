@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For циклі — интерактивті сабақ</title>
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=3TPgKRad1bZVCugh6q2j3Z_rJfRtBq3UB_FAD7lfEtfTQwNbc79kuwYkxpCHjzIk1QztOTKmXMJx2Q1Zl_jBeqYmiZdlWER5549mzDkoRNeWjeAkosY-0pfKRU6tw8yIhZBgUacPQLA9XEEK9T_mLoc-4yL-lMwl1-Z9THY1wEGt3l0eF_b5poFbqjPPMPzBWSzoOoM52NcMZXI6OLid5i88cmjqXJOUQktLcSkFjk701iTXn53PeZTq_I5NfVikblMzvKIpb81PFIDAt5cUqKx_KCmhHT3wrFL3zeIiB2hq9aKxwwbkCzuUY_eEBMBAW9G0fDTaCuMYdqDE1rVm9Q" charset="UTF-8"></script><style>
+:root{--bg:#f4f7fb;--card:#fff;--text:#172033;--muted:#64748b;--primary:#4f46e5;--primary2:#7c3aed;--ok:#16a34a;--bad:#dc2626;--line:#e2e8f0}
+*{box-sizing:border-box} body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+header{background:linear-gradient(135deg,#312e81,#7c3aed);color:white;padding:32px 20px}
+.container{max-width:1100px;margin:auto;padding:0 18px}
+h1{margin:0 0 8px;font-size:clamp(28px,5vw,46px)} h2{margin-top:0}
+.subtitle{opacity:.9;font-size:18px}
+nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 2px 12px #0000000d}
+.navin{display:flex;gap:8px;overflow:auto;padding:10px 18px}.navin button{white-space:nowrap;border:0;background:#eef2ff;color:#3730a3;padding:9px 13px;border-radius:999px;cursor:pointer}
+section{padding:34px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 8px 24px #1e293b0a}
+.term{border-left:5px solid var(--primary);padding-left:14px}.term b{color:#3730a3}
+.code{background:#111827;color:#e5e7eb;border-radius:14px;padding:18px;overflow:auto;font-family:Consolas,monospace}
+.badge{display:inline-block;background:#ede9fe;color:#5b21b6;padding:4px 9px;border-radius:999px;font-size:13px;font-weight:700}
+button.action{border:0;background:var(--primary);color:white;padding:11px 16px;border-radius:10px;font-weight:700;cursor:pointer}
+button.action:hover{filter:brightness(.95)}
+.choice{display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--line);padding:12px;margin:9px 0;border-radius:10px;cursor:pointer}
+.choice:hover{border-color:var(--primary)} .feedback{margin-top:12px;font-weight:700}.ok{color:var(--ok)}.bad{color:var(--bad)}
+.progress{height:10px;background:#e5e7eb;border-radius:99px;overflow:hidden}.bar{height:100%;width:0;background:linear-gradient(90deg,#4f46e5,#a855f7);transition:.3s}
+.task{margin:14px 0;padding:18px;border:1px solid var(--line);border-radius:14px}
+input,textarea,select{width:100%;padding:11px;border:1px solid var(--line);border-radius:9px;font:inherit}
+textarea{min-height:110px;font-family:Consolas,monospace}
+.hidden{display:none}.center{text-align:center}.score{font-size:34px;font-weight:800;color:#4f46e5}
+footer{padding:30px 0;color:var(--muted);text-align:center}
+.small{font-size:14px;color:var(--muted)}
+</style>
+</head>
+<body>
+<header><div class="container">
+<span class="badge">ИНТЕРАКТИВТІ ОҚЫТУ</span>
+<h1>For циклі</h1>
+<div class="subtitle">Құрылымы • Trace Table • Қателерді түзету • Практикалық тапсырмалар • Тест</div>
+</div></header>
+
+<nav><div class="container navin">
+<button onclick="go('theory')">📘 Теория</button>
+<button onclick="go('trace')">🔎 Trace Table</button>
+<button onclick="go('quiz')">🧠 Тест</button>
+<button onclick="go('practice')">💻 Практика</button>
+<button onclick="go('errors')">🛠 Қателер</button>
+<button onclick="go('result')">🏆 Нәтиже</button>
+</div></nav>
+
+<main class="container">
+<section id="theory">
+<h2>1. Негізгі ұғымдар</h2>
+<div class="grid">
+<div class="card term"><b>Цикл</b><p>Белгілі бір шарт орындалғанша бірнеше рет қайталанатын әрекеттер жиынтығы.</p></div>
+<div class="card term"><b>Итерация</b><p>Цикл денесінің бір рет орындалуы.</p></div>
+<div class="card term"><b>Инкремент</b><p>Айнымалы мәнін арттыру, мысалы <code>i++</code>.</p></div>
+</div>
+<div class="card" style="margin-top:18px">
+<h3>For циклі қалай жұмыс істейді?</h3>
+<p><b>1)</b> Айнымалыны инициализациялау → <b>2)</b> шартты тексеру → <b>3)</b> цикл денесін орындау → <b>4)</b> айнымалыны өзгерту → қайтадан шартты тексеру.</p>
+<div class="code">for (int i = 1; i &lt;= 3; i++) {
+    // цикл денесі
+    print(i);
+}</div>
+<p>Шарт <b>true</b> болса, цикл денесі орындалады. Шарт <b>false</b> болса, цикл тоқтайды.</p>
+</div>
+</section>
+
+<section id="trace">
+<h2>2. Trace Table — циклді қадамдап бақылау</h2>
+<div class="card">
+<p>Мысал: <code>for (int i = 1; i &lt;= 3; i++)</code></p>
+<table style="width:100%;border-collapse:collapse">
+<tr><th style="padding:10px;border-bottom:1px solid #ddd">Итерация</th><th style="padding:10px;border-bottom:1px solid #ddd">Шарт</th><th style="padding:10px;border-bottom:1px solid #ddd">i</th><th style="padding:10px;border-bottom:1px solid #ddd">Нәтиже</th></tr>
+<tr><td>1</td><td>1 ≤ 3 — Иә</td><td>1</td><td>1</td></tr>
+<tr><td>2</td><td>2 ≤ 3 — Иә</td><td>2</td><td>2</td></tr>
+<tr><td>3</td><td>3 ≤ 3 — Иә</td><td>3</td><td>3</td></tr>
+<tr><td>4</td><td>4 ≤ 3 — Жоқ</td><td>4</td><td>Цикл аяқталды</td></tr>
+</table>
+</div>
+<div class="card" style="margin-top:18px">
+<h3>Интерактивті симулятор</h3>
+<p>Бастапқы мәні: <b>1</b>, шарт: <b>i ≤ 5</b>, қадам: <b>+1</b>.</p>
+<div class="progress"><div class="bar" id="simbar"></div></div>
+<p id="simtext">Бастау үшін батырманы басыңыз.</p>
+<button class="action" onclick="stepSim()">Келесі қадам</button>
+<button class="action" onclick="resetSim()">Қайта бастау</button>
+</div>
+</section>
+
+<section id="quiz">
+<h2>3. Түсінікті тексеру</h2>
+<div class="card">
+<p><b>1.</b> <code>for (int i = 10; i &gt; 0; i--)</code> циклі неше рет орындалады?</p>
+<button class="choice" onclick="answer(this,false,'q1')">A) 9 рет</button>
+<button class="choice" onclick="answer(this,true,'q1')">B) 10 рет</button>
+<button class="choice" onclick="answer(this,false,'q1')">C) 11 рет</button>
+<button class="choice" onclick="answer(this,false,'q1')">D) Шексіз</button>
+<div id="q1" class="feedback"></div>
+</div>
+<div class="card" style="margin-top:18px">
+<p><b>2.</b> <code>for (int x = 0; x &lt; 10; x += 2)</code> цикліндегі соңғы мән қандай?</p>
+<button class="choice" onclick="answer(this,false,'q2')">A) 10</button>
+<button class="choice" onclick="answer(this,false,'q2')">B) 9</button>
+<button class="choice" onclick="answer(this,false,'q2')">C) 0</button>
+<button class="choice" onclick="answer(this,true,'q2')">D) 8</button>
+<div id="q2" class="feedback"></div>
+</div>
+</section>
+
+<section id="practice">
+<h2>4. Практикалық тапсырмалар</h2>
+<div class="task"><span class="badge">1-тапсырма</span>
+<p>1-ден 10-ға дейінгі сандарды экранға шығаратын цикл жазыңыз.</p>
+<textarea id="p1" placeholder="Кодыңызды осында жазыңыз..."></textarea>
+<button class="action" onclick="checkPractice(1)">Тексеру</button><div id="pf1" class="feedback"></div>
+</div>
+<div class="task"><span class="badge">2-тапсырма</span>
+<p>Берілген бүтін сандар массивінің барлық элементтерінің қосындысын есептейтін цикл жазыңыз.</p>
+<textarea id="p2" placeholder="Мысалы: sum = 0 ..."></textarea>
+<button class="action" onclick="checkPractice(2)">Тексеру</button><div id="pf2" class="feedback"></div>
+</div>
+<div class="task"><span class="badge">3-тапсырма</span>
+<p>Тізімдегі тек жұп сандарды экранға шығаратын цикл жазыңыз. <code>if</code> қолдануға болады.</p>
+<textarea id="p3" placeholder="Кодыңызды осында жазыңыз..."></textarea>
+<button class="action" onclick="checkPractice(3)">Тексеру</button><div id="pf3" class="feedback"></div>
+</div>
+</section>
+
+<section id="errors">
+<h2>5. Қателерді түзету</h2>
+<div class="card">
+<p><b>Мәселе 1:</b> Цикл <code>i &lt; 5</code> шартымен 1,2,3,4 мәндерін ғана қосады. 5 саны есепке алынбайды. Дұрыс нұсқа: <code>i &lt;= 5</code> немесе <code>i &lt; 6</code>.</p>
+<p><b>Мәселе 2:</b> <code>i = 0</code> болып, шарт <code>i &lt; 10</code>, ал өзгеріс <code>i--</code> болса, цикл тоқтамайды: 0, -1, -2... Бұл — <b>Infinite loop</b>.</p>
+<p><b>Мәселе 3:</b> 3 элементі бар массивтің индекстері 0,1,2. <code>i &lt;= 3</code> қолданылса, <code>arr[3]</code> шақырылады. Дұрысы — <code>i &lt; 3</code>.</p>
+</div>
+</section>
+
+<section id="result">
+<h2>6. Нәтиже</h2>
+<div class="card center">
+<div class="score" id="score">0 / 2</div>
+<p>Тест нәтижесі</p>
+<div class="progress"><div class="bar" id="scorebar"></div></div>
+<p class="small">Практикалық тапсырмаларды да орындап, кодыңызды тексеріңіз.</p>
+<button class="action" onclick="window.print()">🖨 Нәтижені басып шығару</button>
+</div>
+</section>
+</main>
+
+<footer>For циклі • Интерактивті оқыту сайты</footer>
+
+<script>
+let points=0, answered={q1:false,q2:false}, sim=1;
+function go(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
+function answer(btn,correct,id){
+ if(answered[id]) return;
+ answered[id]=true;
+ btn.style.borderColor=correct?'#16a34a':'#dc2626';
+ const f=document.getElementById(id);
+ if(correct){points++;f.className='feedback ok';f.textContent='✓ Дұрыс жауап!';}
+ else {f.className='feedback bad';f.textContent='✗ Дұрыс емес. Қайта қарап көріңіз.';}
+ updateScore();
+}
+function updateScore(){
+ document.getElementById('score').textContent=points+' / 2';
+ document.getElementById('scorebar').style.width=(points/2*100)+'%';
+}
+function stepSim(){
+ const t=document.getElementById('simtext');
+ if(sim<=5){t.innerHTML='Итерация: <b>'+sim+'</b> → шарт '+sim+' ≤ 5: <span class="ok">Иә</span> → шығару: <b>'+sim+'</b>';document.getElementById('simbar').style.width=(sim/5*100)+'%';sim++;}
+ else {t.innerHTML='i = 6 → шарт 6 ≤ 5: <span class="bad">Жоқ</span> → цикл аяқталды.';}
+}
+function resetSim(){sim=1;document.getElementById('simbar').style.width='0%';document.getElementById('simtext').textContent='Бастау үшін батырманы басыңыз.';}
+function checkPractice(n){
+ const v=document.getElementById('p'+n).value.toLowerCase();
+ const f=document.getElementById('pf'+n);
+ let ok=false;
+ if(n===1) ok=(v.includes('for') && (v.includes('range')||v.includes('<=10')||v.includes('i<=10')||v.includes('i < 11')));
+ if(n===2) ok=(v.includes('sum') && v.includes('for'));
+ if(n===3) ok=(v.includes('for') && (v.includes('% 2')||v.includes('%2')) && v.includes('if'));
+ f.className='feedback '+(ok?'ok':'bad');
+ f.textContent=ok?'✓ Негізгі талаптар орындалған сияқты!':'✗ Кодты қайта тексеріңіз: for циклі және тапсырмадағы негізгі шарттар болуы керек.';
+}
+updateScore();
+</script>
+</body>
+</html>
